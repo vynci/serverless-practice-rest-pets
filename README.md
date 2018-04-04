@@ -50,7 +50,7 @@ Example Result:
 {"name": "Larry", "type": "Bird", "breed": "Parrot", "owner": "Default","id":"ee6490d0-aa81-11e6-9ede-afdfa051af86","createdAt":1479138570824,"checked":false,"updatedAt":1479138570824}%
 ```
 
-### Update a Todo
+### Update a Pet
 
 ```bash
 # Replace the <id> part with a real id from your pets table
@@ -62,7 +62,7 @@ Example Result:
 {"name": "Shawn", "type": "Bird", "breed": "Not A Parrot", "owner": "Default","id":"ee6490d0-aa81-11e6-9ede-afdfa051af86","createdAt":1479138570824,"updatedAt":1479138570824}%
 ```
 
-### Delete a Todo
+### Delete a Pet
 
 ```bash
 # Replace the <id> part with a real id from your pets table
