@@ -29,12 +29,16 @@ module.exports.update = (event, context, callback) => {
       '#pet_type': 'type',
       '#pet_breed': 'breed',
       '#pet_owner': 'owner',
+      '#pet_description': 'description',
+      '#pet_image': 'image'
     },
     ExpressionAttributeValues: {
       ':name': data.name,
       ':type': data.type,
       ':breed': data.breed,
       ':owner': data.owner,
+      ':owner': data.description,
+      ':owner': data.image,
       ':updatedAt': timestamp,
     },
     UpdateExpression: 'SET #pet_name = :name, #pet_type = :type, #pet_breed = :breed, #pet_owner = :owner, updatedAt = :updatedAt',

@@ -26,6 +26,8 @@ module.exports.create = (event, context, callback) => {
       type: data.type,
       breed: data.breed,
       owner: data.owner,
+      description: data.description,
+      image: data.image,
       createdAt: timestamp,
       updatedAt: timestamp,
     },
