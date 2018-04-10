@@ -1,22 +1,6 @@
-<!--
-title: AWS Serverless REST API example in NodeJS
-description: This example demonstrates how to setup a RESTful Web Service allowing you to create, list, get, update and delete Todos. DynamoDB is used to store the data. 
-layout: Doc
--->
-# Serverless REST API
+# Serverless Backend (Sample project)
 
-This example demonstrates how to setup a [RESTful Web Services](https://en.wikipedia.org/wiki/Representational_state_transfer#Applied_to_web_services) allowing you to create, list, get, update and delete Todos. DynamoDB is used to store the data. This is just an example and of course you could use any data storage as a backend.
-
-## Structure
-
-This service has a separate directory for all the todo operations. For each operation exactly one file exists e.g. `todos/delete.js`. In each of these files there is exactly one function which is directly attached to `module.exports`.
-
-The idea behind the `todos` directory is that in case you want to create a service containing multiple resources e.g. users, notes, comments you could do so in the same service. While this is certainly possible you might consider creating a separate service for each resource. It depends on the use-case and your preference.
-
-## Use-cases
-
-- API for a Web Application
-- API for a Mobile Application
+![alt text](https://lh3.googleusercontent.com/svwsbW5y6Scd0S8-s7XTV2WJwT8JJXrV1kjypgU5VfXmrJCW80MdNWvsGZ9pZ6jeeI4ehcHDuX3F_reZui-d_s-G6YYoSUSte0f7R0osFyfQyYWket_919MpwjymeskXdVezz0jQRnsW30VD71dCifL7LwL-aOl6vxIex_O3CVZiH9_pWjYwCw3Zs-VAOvuo5SHLuYL8hJlPwxetTNj5MpKto84tU7JplCgdiVTIJt3qtBUlK9EI6w64seXh8iMPS9FN8lhCdC2M-PwnF7p5mKkHpO7hoJtI3iG5DKztVSAne96B_1OKI0ubzp_WsrifCg3ZlgQ6HWL930MyjgRA_W_4L37V00PsFWdTwRKmbyQ-ZE_Qxe5WzdwVJ_ry0CVu9AARNwYu51jXYUQRxWJCLU-fntUAQstIkB_v-za3Dz0ApiH77Vmb2U_7TNWKxs5Tmm-vjYeKZpfs5GbO5wi1c1Hmwq36kDrES8gV1lVC-GdvtqC8ZbHuXB3diEwvJfLtcSAP2ySDDjmt2PrX1eiBHbM5OdHdS1NZATyWTxN6Zi0ZVI9BahBsS8H51AtMzb4JXHgmV5n5XzrWBv5M8lOo1CYF5-B7B9P9lHcWZJxF8A3mTEKJsJUwrPANDgZz3z8aPwSarxZV_5cC9tL225OhS40jSzSCLBE=w1280-h720-no)
 
 ## Setup
 
@@ -49,11 +33,11 @@ region: us-east-1
 api keys:
   None
 endpoints:
-  POST - https://45wf34z5yf.execute-api.us-east-1.amazonaws.com/dev/todos
-  GET - https://45wf34z5yf.execute-api.us-east-1.amazonaws.com/dev/todos
-  GET - https://45wf34z5yf.execute-api.us-east-1.amazonaws.com/dev/todos/{id}
-  PUT - https://45wf34z5yf.execute-api.us-east-1.amazonaws.com/dev/todos/{id}
-  DELETE - https://45wf34z5yf.execute-api.us-east-1.amazonaws.com/dev/todos/{id}
+  POST - https://5m718e0hf5.execute-api.us-east-1.amazonaws.com/dev/pets
+  GET - https://5m718e0hf5.execute-api.us-east-1.amazonaws.com/dev/pets
+  GET - https://5m718e0hf5.execute-api.us-east-1.amazonaws.com/dev/pets/{id}
+  PUT - https://5m718e0hf5.execute-api.us-east-1.amazonaws.com/dev/pets/{id}
+  DELETE - https://5m718e0hf5.execute-api.us-east-1.amazonaws.com/dev/pets/{id}
 functions:
   serverless-rest-api-with-dynamodb-dev-update: arn:aws:lambda:us-east-1:488110005556:function:serverless-rest-api-with-dynamodb-dev-update
   serverless-rest-api-with-dynamodb-dev-get: arn:aws:lambda:us-east-1:488110005556:function:serverless-rest-api-with-dynamodb-dev-get
@@ -64,79 +48,49 @@ functions:
 
 ## Usage
 
-You can create, retrieve, update, or delete todos with the following commands:
+You can create, retrieve, update, or delete pets with the following commands:
 
-### Create a Todo
+### Create a Pet
 
 ```bash
-curl -X POST https://XXXXXXX.execute-api.us-east-1.amazonaws.com/dev/todos --data '{ "text": "Learn Serverless" }'
+curl -X POST https://5m718e0hf5.execute-api.us-east-1.amazonaws.com/dev/pets --data '{ "name": "Larry", "type": "bird", "breed":"parrot", "owner":{"name":"Vince Elizaga", "id":"e2645060-ba81-15e6-aede-afefa25fff8x"} }'
 ```
 
 Example Result:
 ```bash
-{"text":"Learn Serverless","id":"ee6490d0-aa81-11e6-9ede-afdfa051af86","createdAt":1479138570824,"checked":false,"updatedAt":1479138570824}%
+{"name": "Larry", "type": "bird", "breed":"parrot", "owner":{"name":"Vince Elizaga", "id":"e2645060-ba81-15e6-aede-afefa25fff8x"}, "id":"ee6490d0-aa81-11e6-9ede-afdfa051af86","createdAt":1479138570824,"updatedAt":1479138570824}%
 ```
 
-### List all Todos
+### List all pets
 
 ```bash
-curl https://XXXXXXX.execute-api.us-east-1.amazonaws.com/dev/todos
+curl https://5m718e0hf5.execute-api.us-east-1.amazonaws.com/dev/pets
 ```
 
-Example output:
-```bash
-[{"text":"Deploy my first service","id":"ac90fe80-aa83-11e6-9ede-afdfa051af86","checked":true,"updatedAt":1479139961304},{"text":"Learn Serverless","id":"20679390-aa85-11e6-9ede-afdfa051af86","createdAt":1479139943241,"checked":false,"updatedAt":1479139943241}]%
-```
-
-### Get one Todo
+### Get one Pet
 
 ```bash
-# Replace the <id> part with a real id from your todos table
-curl https://XXXXXXX.execute-api.us-east-1.amazonaws.com/dev/todos/<id>
+# Replace the <id> part with a real id from your pets table
+curl https://5m718e0hf5.execute-api.us-east-1.amazonaws.com/dev/pets/<id>
 ```
 
 Example Result:
 ```bash
-{"text":"Learn Serverless","id":"ee6490d0-aa81-11e6-9ede-afdfa051af86","createdAt":1479138570824,"checked":false,"updatedAt":1479138570824}%
+{"name": "Larry", "type": "bird", "breed":"parrot", "owner":{"name":"Vince Elizaga", "id":"e2645060-ba81-15e6-aede-afefa25fff8x"}, "id":"ee6490d0-aa81-11e6-9ede-afdfa051af86","createdAt":1479138570824,"updatedAt":1479138570824}%
 ```
 
-### Update a Todo
+### Update a Pet
 
 ```bash
-# Replace the <id> part with a real id from your todos table
-curl -X PUT https://XXXXXXX.execute-api.us-east-1.amazonaws.com/dev/todos/<id> --data '{ "text": "Learn Serverless", "checked": true }'
+# Replace the <id> part with a real id from your pets table
+curl -X PUT https://5m718e0hf5.execute-api.us-east-1.amazonaws.com/dev/pets/<id> --data '{ "name": "Larry", "type": "dog", "breed":"Pug", "owner":{"name":"Vince Elizaga", "id":"e2645060-ba81-15e6-aede-afefa25fff8x"} }'
 ```
 
-Example Result:
-```bash
-{"text":"Learn Serverless","id":"ee6490d0-aa81-11e6-9ede-afdfa051af86","createdAt":1479138570824,"checked":true,"updatedAt":1479138570824}%
-```
-
-### Delete a Todo
+### Delete a Pet
 
 ```bash
-# Replace the <id> part with a real id from your todos table
-curl -X DELETE https://XXXXXXX.execute-api.us-east-1.amazonaws.com/dev/todos/<id>
+# Replace the <id> part with a real id from your pets table
+curl -X DELETE https://5m718e0hf5.execute-api.us-east-1.amazonaws.com/dev/pets/<id>
 ```
 
 No output
-
-## Scaling
-
-### AWS Lambda
-
-By default, AWS Lambda limits the total concurrent executions across all functions within a given region to 100. The default limit is a safety limit that protects you from costs due to potential runaway or recursive functions during initial development and testing. To increase this limit above the default, follow the steps in [To request a limit increase for concurrent executions](http://docs.aws.amazon.com/lambda/latest/dg/concurrent-executions.html#increase-concurrent-executions-limit).
-
-### DynamoDB
-
-When you create a table, you specify how much provisioned throughput capacity you want to reserve for reads and writes. DynamoDB will reserve the necessary resources to meet your throughput needs while ensuring consistent, low-latency performance. You can change the provisioned throughput and increasing or decreasing capacity as needed.
-
-This is can be done via settings in the `serverless.yml`.
-
-```yaml
-  ProvisionedThroughput:
-    ReadCapacityUnits: 1
-    WriteCapacityUnits: 1
-```
-
-In case you expect a lot of traffic fluctuation we recommend to checkout this guide on how to auto scale DynamoDB [https://aws.amazon.com/blogs/aws/auto-scale-dynamodb-with-dynamic-dynamodb/](https://aws.amazon.com/blogs/aws/auto-scale-dynamodb-with-dynamic-dynamodb/)
